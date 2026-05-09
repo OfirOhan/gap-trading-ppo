@@ -288,4 +288,6 @@ The model converged to a long-only strategy across all splits, reflecting the di
 
 The model described here is deployed in live trading. The repository containing training code, data pipelines, and model weights is **private**. This document exists to describe the technical work in detail for the purpose of professional review.
 
+The project is actively ongoing — current work includes improving out-of-sample generalization across market regimes, expanding the action space beyond long-only, and refining the reward structure. Results and architecture will continue to evolve.
+
 *Full code access available upon request for verified employers during technical interviews.*
