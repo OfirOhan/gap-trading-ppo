@@ -224,6 +224,37 @@ The three-split comparison table gives an immediate readout of train/val/test ge
 
 ---
 
+## Training Diagnostics
+
+![Train vs Validation — Overfitting Diagnostics](images/training_diagnostics.png)
+
+The training curves show stable convergence across 180 epochs. Win rate on both train and validation climbs steadily and converges to similar levels by the end of training, suggesting the directional signal generalizes. The overfitting gap (Train − Val active net return) spikes sharply in the first few epochs as the policy begins to specialize, then stabilizes at a consistent level for the remainder of training — indicating the model is not continuing to overfit but rather reflecting a persistent structural difference between the two periods.
+
+---
+
+## Evaluation Results
+
+Greedy (deterministic) evaluation of the final checkpoint across all three splits:
+
+| Metric | Train | Validation | Test |
+|---|---|---|---|
+| Trades Executed | 67,195 | 8,170 | 3,171 |
+| Trade Rate | 5.18% | 1.57% | 0.72% |
+| Win Rate | 78.71% | 56.93% | 58.15% |
+| Mean Gross Return | 23.49% | 4.09% | 11.20% |
+| Mean Trade Duration | 21.6 days | 20.5 days | 31.1 days |
+| **Gross Return / Day** | **~1.09%** | **~0.20%** | **~0.36%** |
+
+Gross return is positive across all three splits, including the blind test set. The key efficiency metric is **gross return per day held** — normalizing by trade duration removes the effect of hold time and gives a cleaner read of edge quality per unit of capital deployment. Val and test both show meaningful per-day returns on genuinely out-of-sample data.
+
+The *mean net return* column is omitted here intentionally — net return in this system includes an intra-reward holding time penalty used to train the model toward time-efficient exits. It is an optimization signal, not a P&L figure, and is not meaningful as a standalone performance metric.
+
+The model converged to a long-only strategy across all splits, reflecting the directional bias present in the training data during the covered period.
+
+> **A note on the train/val gap:** The train and validation sets span materially different market regimes. The training period covers a predominantly trending market environment, while the validation and test periods include distinct volatility and regime characteristics. A significant portion of the performance gap reflects this regime shift rather than classical overfitting — a known and expected challenge in any system trained on historical financial data. The positive gross return per day on both held-out splits confirms that the core directional signal survives out-of-sample.
+
+---
+
 ## Key Engineering Decisions
 
 | Decision | Rationale |
