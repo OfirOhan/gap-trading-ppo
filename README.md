@@ -280,7 +280,7 @@ The model converged to a long-only strategy across all splits, reflecting the di
 
 ## Stack
 
-`Python` · `PyTorch` · `Numba` · `pandas` · `NumPy` · `SciPy` · `scikit-learn`
+`Python` · `PyTorch` · `Numba` · `pandas` · `NumPy` · `SciPy` · `Matplotlib` · `seaborn` · `tqdm`
 
 ---
 
