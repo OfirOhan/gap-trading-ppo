@@ -107,7 +107,7 @@ The continuous heads use a **LogNormal distribution** — stop and take multipli
 
 All continuous head outputs are **tanh-squashed to `[-2, 2]`** before being used as distribution parameters. Unconstrained, `mu` and `log_sigma` can diverge early in training, causing gradient explosions through the log-probability computation. Squashing keeps the implied distribution ranges physically meaningful throughout.
 
-**Initialization strategy:** All logit and log-std heads are initialized with orthogonal weights at gain `0.01`. This starts the policy in near-maximum-entropy state — the agent explores roughly uniformly before committing. The `stop_mu` and `take_mu` biases are set to produce initial multipliers of approximately `1.6×` and `2.7×` gap distance respectively, giving the model a reasonable starting prior.
+**Initialization strategy:** All logit and log-std heads are initialized with orthogonal weights at gain `0.01`. This starts the policy in near-maximum-entropy state — the agent explores roughly uniformly before committing. The `stop_mu` and `take_mu` biases are set to produce initial multipliers of approximately `1.6×` and `2.7×` gap distance respectively, granting the model a reasonable starting prior.
 
 ### Unified Skip/Long/Short Action
 
